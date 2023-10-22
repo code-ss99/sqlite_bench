@@ -1,9 +1,9 @@
 #include <benchmark.hpp>
 
-class BenchMarkSenOne : public BenchMark{
+class BenchMarkSenTwo : public BenchMark{
     public:
 
-        BenchMarkSenOne(const std::string& dbPath);
+        BenchMarkSenTwo(const std::string& dbPath);
 
         void CreateTable();
 

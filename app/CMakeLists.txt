@@ -10,6 +10,7 @@ add_executable(${APP_TARGET}
         ${LIBRARY_SOURCES}
         main.cpp
         src/benchmarkSenOne.cpp
+        src/benchmarkSenTwo.cpp
 )
 
 target_include_directories(${APP_TARGET} PRIVATE

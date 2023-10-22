@@ -2,7 +2,6 @@
 
 BenchMarkSenOne::BenchMarkSenOne(const std::string& dbPath) : BenchMark(dbPath)
 {
-
 }
 
 
@@ -35,9 +34,75 @@ void BenchMarkSenOne::CreateTable()
     handle.ExecuteSql(sql);
 }
 
-void BenchMarkSenOne::WriteSingleDataP(){}
+void BenchMarkSenOne::WriteSingleData()
+{
+    //first write record than meta data
+    std::string insert = "INSERT INTO RECORD"
+                        "(datapoint_key, timestamp, value)"
+                        "VALUES (1,1697702445,19);";
 
-void BenchMarkSenOne::WriteBulkData(){}
+    handle.ExecuteSql(insert);
+
+    insert = "INSERT INTO METADATA"
+            "(datapoint_key, datapoint_name, sw_id, ecu_uuid, ts)"
+            "VALUES (1, 'flow_temp_circult_1', 10, 100, 1697702445);";
+
+    handle.ExecuteSql(insert);
+
+}
+
+void BenchMarkSenOne::WriteBulkData()
+{
+    std::string bulk = "INSERT INTO RECORD "
+                        "(datapoint_key, timestamp, value) "
+                        "VALUES";
+
+    // write record
+    int datapoint_key = 1;
+    int timestamp = 1697785707;
+    int data = 10;
+
+    for(int i = 0; i < 10; i++){
+        int cur = timestamp;
+        for(int j = 0; j < 100; j++){
+            cur++;
+            data++;
+            bulk += " (" + std::to_string(datapoint_key) + "," + std::to_string(cur) + "," + std::to_string(data) + "),";
+        }
+
+        datapoint_key++;
+    }
+    
+    bulk.pop_back();
+
+    bulk += ";";
+    handle.ExecuteSql(bulk);
+
+
+    // write data
+    bulk = "INSERT INTO METADATA "
+                        "(datapoint_key, datapoint_name, sw_id, ecu_uuid, ts) "
+                        "VALUES";
+
+    int swid = 10;
+    int uuid = 1000;
+    datapoint_key = 2;
+    timestamp = 1697785708;
+    std::string dataPointName = "flow_temp_circult_";
+    for(int i = 0; i < 10; i++){
+        swid += datapoint_key;
+        uuid += datapoint_key;
+        bulk += " (" + std::to_string(datapoint_key) + "," + "'" + dataPointName + std::to_string(datapoint_key) + "'" + "," + std::to_string(swid) + 
+                "," + std::to_string(uuid) + "," + std::to_string(timestamp) + "),";
+
+        datapoint_key++;
+    }
+
+    bulk.pop_back();
+
+    bulk += ";";
+    handle.ExecuteSql(bulk);
+}
 
 void BenchMarkSenOne::QueryWithTime(){}
 

@@ -23,7 +23,7 @@ class BenchMark{
 
         virtual void CreateTable() = 0;
 
-        virtual void WriteSingleDataP()= 0;
+        virtual void WriteSingleData()= 0;
 
         virtual void WriteBulkData()= 0;
 
