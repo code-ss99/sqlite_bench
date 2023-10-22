@@ -6,6 +6,8 @@
 
 namespace DataRecorder::Data
 {
+    using QueryCallBack = int (*)(void*,int,char**,char**);
+
     class DataBank{
         public:
 
@@ -14,6 +16,8 @@ namespace DataRecorder::Data
             DataBank(const std::string& dbpath);
 
             int ExecuteSql(const std::string& query);
+
+            int ExecuteSql(const std::string& query, QueryCallBack callback);
 
             //int ExecuteStep(std::shared_ptr<sqlite3_stmt> sqlStmt);
 

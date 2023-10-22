@@ -106,6 +106,19 @@ void BenchMarkSenOne::WriteBulkData()
 
 void BenchMarkSenOne::QueryWithTime(){}
 
-void BenchMarkSenOne::QueryDataWithinTime(){}
+void BenchMarkSenOne::QueryDataWithinTime()
+{
+    std::string select = "SELECT * FROM RECORD;";
+
+    auto callback = [](void* data, int argc, char** argv, char** colName) -> int {
+            for (int i = 0; i < argc; ++i) {
+                std::cout << colName[i] << " " << (argv[i] ? argv[i] : "NULL") << std::endl;
+            }
+
+            return SQLITE_OK;
+        };
+
+    handle.ExecuteSql(select, callback);
+}
 
 void BenchMarkSenOne::DeletDataOlderThan(){}

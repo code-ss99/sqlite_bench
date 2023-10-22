@@ -24,6 +24,13 @@ namespace DataRecorder::Data
         return result;
     }      
 
+    int DataBank::ExecuteSql(const std::string& query, QueryCallBack callback)
+    {
+        int result = sqlite3_exec(sqlite.get(), query.c_str(), callback, 0, nullptr);
+
+        return result;
+    }
+    
     bool DataBank::TableExist(const std::string& tableName)
     {
         std::string sql = "SELECT count(type) FROM sqlite_master WHERE type='table' AND name=" + tableName + ";";

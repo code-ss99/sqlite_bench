@@ -21,6 +21,7 @@ try
     benchOne.CreateTable();
     benchOne.WriteSingleData();
     benchOne.WriteBulkData();
+    benchOne.QueryDataWithinTime();
 
     std::cout << "end bench 1" << std::endl;
 
