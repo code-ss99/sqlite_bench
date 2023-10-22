@@ -1,4 +1,5 @@
 #include <databank.hpp>
+#include "benchmarkSenOne.hpp"
 #include <boost/format.hpp>
 #include <iostream> 
 #include <chrono>
@@ -28,6 +29,13 @@ void CalculateTime();
 int main(int argc, char **argv) {
 try
 {
+    const std::string senonePath = "/home/sspa/Desktop/dev/sqlite_bench/db/sehmafirst.db";
+    BenchMarkSenOne one(senonePath);
+
+    one.CreateTable();
+/*
+
+
     std::cout << "begin bench 1" << std::endl;
     DataRecorder::Data::DataBank db1("/home/sspa/Desktop/dev/sqlite_bench/db/sehmafirst.db");
 
@@ -52,6 +60,8 @@ try
     BulkWriteDataPointSenTwo(db2);
     
     std::cout << "end bench 2" << std::endl;
+
+    */
 }
 catch(const std::exception& e)
 {

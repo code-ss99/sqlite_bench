@@ -25,6 +25,8 @@ namespace DataRecorder::Data
 
             DataBank& operator =(DataBank const& db) = delete;
 
+            DataBank(DataBank&& db) = default;
+
             ~DataBank() = default;
 
             struct Deleter
