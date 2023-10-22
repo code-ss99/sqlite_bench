@@ -1,6 +1,3 @@
-#
-# Copyright (c) 2022 Vaillant Group International GmbH. All rights reserved.
-#
 
 execute_process(COMMAND git describe --tags --abbrev --match "v[0-9].[0-9].[0-9]" --long
         OUTPUT_VARIABLE GIT_DESCRIBE
